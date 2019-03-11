@@ -1,7 +1,8 @@
-package com.nagarro.assignment.services;
+package com.nagarro.assignment.services.implementation;
 
 import com.nagarro.assignment.dao.pojo.User;
-import com.nagarro.assignment.daolayer.BaseDaoImplement;
+import com.nagarro.assignment.dao.pojo.implementation.BaseDaoImplement;
+import com.nagarro.assignment.services.BaseServices;
 
 public class BaseServicesImplementation implements BaseServices {
 

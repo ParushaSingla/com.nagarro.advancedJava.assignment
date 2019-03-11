@@ -1,4 +1,4 @@
-package com.nagarro.assignment.daolayer;
+package com.nagarro.assignment.dao.pojo.implementation;
 
 
 import org.hibernate.Session;
@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 
 import com.nagarro.assignment.dao.pojo.User;
-
+import com.nagarro.assignment.daolayer.BaseDao;
 import com.nagarro.assignment.util.hibernateutil;
 
 public class BaseDaoImplement implements BaseDao {

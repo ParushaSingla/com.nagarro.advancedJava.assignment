@@ -20,7 +20,7 @@ import org.hibernate.Session;
 import com.nagarro.assignment.constants.Constants;
 import com.nagarro.assignment.dao.pojo.Image;
 import com.nagarro.assignment.dao.pojo.User;
-import com.nagarro.assignment.services.BaseServicesImplementation;
+import com.nagarro.assignment.services.implementation.BaseServicesImplementation;
 import com.nagarro.assignment.util.hibernateutil;
 
 /**

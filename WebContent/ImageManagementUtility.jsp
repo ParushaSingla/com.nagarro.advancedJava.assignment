@@ -94,7 +94,7 @@
 					<th scope="row"><%=i + 1%></th>
 					<td><%=image.getName()%></td>
 					<td>
-						<%=decimalFormatter.format(new Double(image.getSize())/1000000)%>MB
+						<%=decimalFormatter.format(new Double(image.getSize())/1024)%>KB
 					</td>
 					<td><img alt="No Image" src="<%=image.getPreview()%>"
 						class="img-thumbnail" height="100px" width="40%"></td>

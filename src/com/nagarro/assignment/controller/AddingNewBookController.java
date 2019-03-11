@@ -26,6 +26,7 @@ import com.nagarro.assignment.constants.Constants;
 import com.nagarro.assignment.dao.pojo.Image;
 import com.nagarro.assignment.dao.pojo.User;
 import com.nagarro.assignment.util.hibernateutil;
+import com.nagarro.assignment.validation.Validate;
 
 /**
  * Servlet implementation class Submitting
@@ -54,19 +55,26 @@ public class AddingNewBookController extends HttpServlet {
 			throws ServletException, IOException {
 		User user = (User) request.getSession().getAttribute(Constants.USER_OBJECT);
 		Part filePart = request.getPart(Constants.FILE);
+		if (filePart.getSize() == 0) {
+			request.setAttribute(Constants.MSG, Constants.SELECT_IMAGE_OF_SIZE_LESS_THAN_1_MB);
+			request.setAttribute(Constants.IMAGES_LIST, user.getImage());
+			request.getRequestDispatcher(Constants.IMAGE_MANAGEMENT_UTILITY_JSP).include(request, response);
+
+		}
 		try {
-			if (filePart.getSize() <= 1024000) {
-				String fileUrl = getFileName(filePart).replace(Constants.STRING2, Constants.STRING);
-				String[] arr = fileUrl.split(Constants.STRING);
-				String fileName = arr[arr.length - 1];
-				String savePath = Constants.SAVE_DIR + fileName;
-				File fileSaveDir = new File(savePath);
+
+			String fileUrl = getFileName(filePart).replace(Constants.STRING2, Constants.STRING);
+			String[] arr = fileUrl.split(Constants.STRING);
+			String fileName = arr[arr.length - 1];
+			String savePath = Constants.SAVE_DIR + fileName;
+			File fileSaveDir = new File(savePath);
+			System.out.println(fileSaveDir.length());
+			if (Validate.validateImageData(fileSaveDir, user.getImage(), filePart.getSize()/1024)) {
 				filePart.write(savePath + File.separator);
 				Image toBeSaved = new Image();
-				if (fileName != null) {
+				System.out.println();
+				addBookToDataBase(user, filePart, fileName, savePath, toBeSaved);
 
-					addBookToDataBase(user, filePart, fileName, savePath, toBeSaved);
-				}
 				request.setAttribute(Constants.IMAGES_LIST, user.getImage());
 				request.getRequestDispatcher(Constants.IMAGE_MANAGEMENT_UTILITY_JSP).include(request, response);
 			} else {
@@ -74,6 +82,7 @@ public class AddingNewBookController extends HttpServlet {
 				request.setAttribute(Constants.IMAGES_LIST, user.getImage());
 				request.getRequestDispatcher(Constants.IMAGE_MANAGEMENT_UTILITY_JSP).include(request, response);
 			}
+
 		} catch (FileNotFoundException fex) {
 			request.setAttribute(Constants.MSG, Constants.SELECT_A_FILE);
 		}

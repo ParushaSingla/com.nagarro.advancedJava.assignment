@@ -27,9 +27,12 @@ public class Image {
 	@JoinColumn(name = "user_id")
 	@ManyToOne
 	User userId;
+
 	public int getImageId() {
 		return imageId;
 	}
+
+
 
 	@Override
 	public String toString() {
