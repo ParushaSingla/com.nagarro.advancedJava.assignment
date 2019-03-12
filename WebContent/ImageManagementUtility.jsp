@@ -25,6 +25,7 @@
 </script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <script
@@ -93,13 +94,12 @@
 				<tr>
 					<th scope="row"><%=i + 1%></th>
 					<td><%=image.getName()%></td>
-					<td>
-						<%=decimalFormatter.format(new Double(image.getSize())/1024)%>KB
+					<td><%=decimalFormatter.format(new Double(image.getSize()) / 1024)%>KB
 					</td>
 					<td><img alt="No Image" src="<%=image.getPreview()%>"
 						class="img-thumbnail" height="100px" width="40%"></td>
 					<td><a
-						href="DeleteAndEditBook?imageId=<%=image.getImageId()%>">Delete</a>
+						href="DeleteAndEditBook?imageId=<%=image.getImageId()%>">delete</a>
 						<button type="button" class="btn btn-info btn-lg" name="edit"
 							data-toggle="modal" data-target="#<%=image.getImageId()%>">Editing</button>
 						<form action="EditBook" method="post"

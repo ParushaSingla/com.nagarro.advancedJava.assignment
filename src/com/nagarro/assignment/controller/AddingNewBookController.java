@@ -69,7 +69,7 @@ public class AddingNewBookController extends HttpServlet {
 			String savePath = Constants.SAVE_DIR + fileName;
 			File fileSaveDir = new File(savePath);
 			System.out.println(fileSaveDir.length());
-			if (Validate.validateImageData(fileSaveDir, user.getImage(), filePart.getSize()/1024)) {
+			if (Validate.validateImageData(fileSaveDir, user.getImage(), fileSaveDir.length()/1024)) {
 				filePart.write(savePath + File.separator);
 				Image toBeSaved = new Image();
 				System.out.println();

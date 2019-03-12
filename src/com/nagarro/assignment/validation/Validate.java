@@ -44,7 +44,7 @@ public class Validate {
 	 */
 	public static boolean validateSingleFileSize(double size) {
 		boolean answer = false;
-		if (size <= 1024) {
+		if (size/1024 <1) {
 			answer = true;
 		}
 		return answer;
@@ -62,7 +62,7 @@ public class Validate {
 		for (int i = 0; i < list.size(); i++) {
 			totalSize += list.get(i).getSize();
 		}
-		if (totalSize <= 1024*10) {
+		if (totalSize/1024 <= 1024*10) {
 			answer = true;
 		}
 		return answer;
